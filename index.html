@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure Server Configuration</title>
+    <title>Custom Pattern Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Azure Server Configuration</h1>
-    <form id="serverConfigForm">
-        <label for="operatingSystem">Operating System:</label>
-        <select id="operatingSystem" name="operatingSystem">
-            <option value="windows" selected>Windows</option>
-            <option value="linux">Linux</option>
+    <h1>Custom Pattern Generator</h1>
+    <form id="patternGeneratorForm">
+        <label for="basePattern">Base Pattern:</label>
+        <select id="basePattern" name="basePattern">
+            <option value="VM - Windows" selected>VM - Windows</option>
+            <option value="VM - Linux">VM - Linux</option>
+            <option value="DB - MS SQL">DB - MS SQL</option>
+            <option value="DB - Oracle">DB - Oracle</option>
         </select>
         
         <label for="azureShape">Azure Shape:</label>
@@ -23,15 +25,6 @@
             <option value="Standard_D32s_v3">Standard_D32s_v3 (32 vCPUs, Premium SSD)</option>
             <option value="Standard_D64s_v3">Standard_D64s_v3 (64 vCPUs, Premium SSD)</option>
         </select>
-        
-        <label for="pattern">Pattern:</label>
-        <input type="text" id="pattern" name="pattern" value="Server 1">
-        
-        <button type="submit">Submit</button>
-    </form>
-    <script src="scripts.js"></script>
-</body>
-</html>
         
         <button type="submit">Submit</button>
     </form>
