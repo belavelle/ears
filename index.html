@@ -17,6 +17,9 @@
             <option value="DB - Oracle">DB - Oracle</option>
         </select>
         
+        <label for="patternName">Pattern Name:</label>
+        <input type="text" id="patternName" name="patternName" value="Server 1">
+        
         <label for="azureShape">Azure Shape:</label>
         <select id="azureShape" name="azureShape">
             <option value="Standard_D4s_v3">Standard_D4s_v3 (4 vCPUs, Premium SSD)</option>
@@ -24,6 +27,19 @@
             <option value="Standard_D16s_v3">Standard_D16s_v3 (16 vCPUs, Premium SSD)</option>
             <option value="Standard_D32s_v3">Standard_D32s_v3 (32 vCPUs, Premium SSD)</option>
             <option value="Standard_D64s_v3">Standard_D64s_v3 (64 vCPUs, Premium SSD)</option>
+        </select>
+        
+        <label for="operatingSystem">Operating System:</label>
+        <select id="operatingSystem" name="operatingSystem">
+            <option value="Windows" selected>Windows</option>
+            <option value="UNIX">UNIX</option>
+        </select>
+        
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+            <option value="App" selected>App</option>
+            <option value="Web">Web</option>
+            <option value="DB">DB</option>
         </select>
         
         <button type="submit">Submit</button>
