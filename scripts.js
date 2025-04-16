@@ -47,6 +47,23 @@ document.getElementById('addDiskButton').addEventListener('click', function() {
     diskSection.appendChild(diskDiv);
 });
 
+document.getElementById('basePattern').addEventListener('change', function() {
+    const basePattern = document.getElementById('basePattern').value;
+    const operatingSystem = document.getElementById('operatingSystem');
+    const type = document.getElementById('type');
+    
+    if (basePattern === 'DB - Oracle') {
+        operatingSystem.value = 'UNIX';
+        type.value = 'DB';
+    } else if (basePattern === 'DB - MS SQL') {
+        operatingSystem.value = 'Windows';
+        type.value = 'DB';
+    } else {
+        operatingSystem.value = 'Windows';
+        type.value = 'App';
+    }
+});
+
 document.getElementById('patternGeneratorForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
@@ -56,7 +73,10 @@ document.getElementById('patternGeneratorForm').addEventListener('submit', funct
         azureShape: document.getElementById('azureShape').value,
         operatingSystem: document.getElementById('operatingSystem').value,
         type: document.getElementById('type').value,
-        disks: []
+        disks: [],
+        asg: document.getElementById('asg').value,
+        az: document.getElementById('az').value,
+        sccm: document.getElementById('sccm').value
     };
     
     document.querySelectorAll('.disk-entry').forEach(diskDiv => {
