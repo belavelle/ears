@@ -46,3 +46,35 @@ document.getElementById('addDiskButton').addEventListener('click', function() {
     
     diskSection.appendChild(diskDiv);
 });
+
+document.getElementById('patternGeneratorForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const formData = {
+        basePattern: document.getElementById('basePattern').value,
+        patternName: document.getElementById('patternName').value,
+        azureShape: document.getElementById('azureShape').value,
+        operatingSystem: document.getElementById('operatingSystem').value,
+        type: document.getElementById('type').value,
+        disks: []
+    };
+    
+    document.querySelectorAll('.disk-entry').forEach(diskDiv => {
+        const diskData = {
+            size: diskDiv.querySelector('select[name="diskSize"]').value,
+            diskType: diskDiv.querySelector('select[name="diskType"]').value,
+            mountPoint: diskDiv.querySelector('input[name="mountPoint"]').value
+        };
+        formData.disks.push(diskData);
+    });
+    
+    const jsonData = JSON.stringify(formData, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'server-config.json';
+    a.click();
+    URL.revokeObjectURL(url);
+});
