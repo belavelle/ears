@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Server Configuration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Azure Server Configuration</h1>
+    <form id="serverConfigForm">
+        <label for="operatingSystem">Operating System:</label>
+        <select id="operatingSystem" name="operatingSystem">
+            <option value="windows" selected>Windows</option>
+            <option value="linux">Linux</option>
+        </select>
+        
+        <label for="azureShape">Azure Shape:</label>
+        <select id="azureShape" name="azureShape">
+            <option value="Standard_D4s_v3">Standard_D4s_v3 (4 vCPUs, Premium SSD)</option>
+            <option value="Standard_D8s_v3">Standard_D8s_v3 (8 vCPUs, Premium SSD)</option>
+            <option value="Standard_D16s_v3">Standard_D16s_v3 (16 vCPUs, Premium SSD)</option>
+            <option value="Standard_D32s_v3">Standard_D32s_v3 (32 vCPUs, Premium SSD)</option>
+            <option value="Standard_D64s_v3">Standard_D64s_v3 (64 vCPUs, Premium SSD)</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+    <script src="scripts.js"></script>
+</body>
+</html>
