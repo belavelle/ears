@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #e4002b; /* Cummins Red */
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #e4002b; /* Cummins Red */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #cc0026;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Template Form</h1>
+        <form id="templateForm">
+            <label for="bu">BU:</label>
+            <input type="text" id="bu" name="bu" value="CRP">
+
+            <label for="bc">BC:</label>
+            <input type="text" id="bc" name="bc" value="007">
+
+            <label for="rc">RC:</label>
+            <input type="text" id="rc" name="rc" value="A47">
+
+            <label for="appid">App ID:</label>
+            <input type="text" id="appid" name="appid" value="NA">
+
+            <label for="cmiTier">CMI Tier:</label>
+            <select id="cmiTier" name="cmiTier">
+                <option value="poc,t,nonprod">poc.t.nonprod</option>
+                <option value="alpha,a,nonprod">alpha.a.nonprod</option>
+                <option value="beta,b,nonprod">beta.b.nonprod</option>
+                <option value="dev,d,nonprod">dev.d.nonprod</option>
+                <option value="stg,s,nonprod">stg.s.nonprod</option>
+                <option value="prd,p,prod">prd.p.prod</option>
+                <option value="dr,p,nonprod">dr.p.nonprod</option>
+            </select>
+
+            <label for="techowner">Tech Owner:</label>
+            <input type="text" id="techowner" name="techowner" value="wh365">
+
+            <label for="billingowner">Billing Owner:</label>
+            <input type="text" id="billingowner" name="billingowner" value="so550">
+
+            <label for="appname">App Name:</label>
+            <input type="text" id="appname" name="appname" value="NA">
+
+            <label for="VMSize">VM Size:</label>
+            <select id="VMSize" name="VMSize">
+                <option value="Standard_D2s_v3">Standard_D2s_v3</option>
+                <option value="Standard_D4s_v2">Standard_D4s_v2</option>
+                <option value="Standard_D8s_v2">Standard_D8s_v2</option>
+                <option value="Standard_D16s_v2">Standard_D16s_v2</option>
+            </select>
+
+            <label for="applicationType">Application Type:</label>
+            <select id="applicationType" name="applicationType">
+                <option value="app">app</option>
+                <option value="db">db</option>
+            </select>
+
+            <label for="image">Image:</label>
+            <select id="image" name="image">
+                <option value="Windows Server 2022,Windows">Windows Server 2022,Windows</option>
+                <option value="Windows Server 2019,Windows">Windows Server 2019,Windows</option>
+                <option value="RHEL 9,linux">RHEL 9,linux</option>
+                <option value="RHEL 8,linux">RHEL 8,linux</option>
+            </select>
+
+            <label for="cloud">Cloud:</label>
+            <input type="text" id="cloud" name="cloud" value="Azure">
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="Americas">
+
+            <label for="app_asg">App ASG:</label>
+            <input type="text" id="app_asg" name="app_asg" value="NA">
+
+            <label for="zone">Zone:</label>
+            <select id="zone" name="zone">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+            <label for="Requestor_WWID">Requestor WWID:</label>
+            <input type="text" id="Requestor_WWID" name="Requestor_WWID" value="wh365">
+
+            <label for="collectionName">Collection Name:</label>
+            <input type="text" id="collectionName" name="collectionName" value="NA">
+
+            <label for="diskSizeGB">Disk Size (GB):</label>
+            <select id="diskSizeGB" name="diskSizeGB">
+                <option value="16">16</option>
+                <option value="32">32</option>
+                <option value="64">64</option>
+                <option value="128">128</option>
+                <option value="256">256</option>
+                <option value="512">512</option>
+            </select>
+
+            <label for="storageType">Storage Type:</label>
+            <select id="storageType" name="storageType">
+                <option value="Standard_LRS">Standard_LRS</option>
+                <option value="Premium_LRS">Premium_LRS</option>
+            </select>
+
+            <label for="mountPoint">Mount Point:</label>
+            <input type="text" id="mountPoint" name="mountPoint" value="NA">
+
+            <button type="button" onclick="generatePayload()">Generate Payload</button>
+        </form>
+    </div>
+
+    <script>
+        function generatePayload() {
+            const form = document.getElementById('templateForm');
+            const formData = new FormData(form);
+            const payload = {};
+
+            formData.forEach((value, key) => {
+                payload[key] = value;
+            });
+
+            console.log(JSON.stringify(payload, null, 2));
+        }
+    </script>
+</body>
+</html>
