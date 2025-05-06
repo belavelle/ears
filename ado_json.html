@@ -36,6 +36,14 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        .disk-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .disk-group input[type="text"] {
+            max-width: 50px;
+        }
         button {
             background-color: #e4002b; /* Cummins Red */
             color: #fff;
@@ -129,30 +137,65 @@
             <label for="collectionName">Collection Name:</label>
             <input type="text" id="collectionName" name="collectionName" value="NA">
 
-            <label for="diskSizeGB">Disk Size (GB):</label>
-            <select id="diskSizeGB" name="diskSizeGB">
-                <option value="16">16</option>
-                <option value="32">32</option>
-                <option value="64">64</option>
-                <option value="128">128</option>
-                <option value="256">256</option>
-                <option value="512">512</option>
-            </select>
+            <div id="diskGroupContainer">
+                <div class="disk-group">
+                    <label for="diskSizeGB">Disk Size (GB):</label>
+                    <select id="diskSizeGB" name="diskSizeGB">
+                        <option value="16">16</option>
+                        <option value="32">32</option>
+                        <option value="64">64</option>
+                        <option value="128">128</option>
+                        <option value="256">256</option>
+                        <option value="512">512</option>
+                    </select>
 
-            <label for="storageType">Storage Type:</label>
-            <select id="storageType" name="storageType">
-                <option value="Standard_LRS">Standard_LRS</option>
-                <option value="Premium_LRS">Premium_LRS</option>
-            </select>
+                    <label for="storageType">Storage Type:</label>
+                    <select id="storageType" name="storageType">
+                        <option value="Standard_LRS">Standard_LRS</option>
+                        <option value="Premium_LRS">Premium_LRS</option>
+                    </select>
 
-            <label for="mountPoint">Mount Point:</label>
-            <input type="text" id="mountPoint" name="mountPoint" value="NA">
+                    <label for="mountPoint">Mount Point:</label>
+                    <input type="text" id="mountPoint" name="mountPoint" value="NA" maxlength="50">
+                </div>
+            </div>
+
+            <button type="button" onclick="addDisk()">Add Disk</button>
 
             <button type="button" onclick="generatePayload()">Generate Payload</button>
         </form>
     </div>
 
     <script>
+        function addDisk() {
+            const diskGroupContainer = document.getElementById('diskGroupContainer');
+            const newDiskGroup = document.createElement('div');
+            newDiskGroup.className = 'disk-group';
+
+            newDiskGroup.innerHTML = `
+                <label for="diskSizeGB">Disk Size (GB):</label>
+                <select id="diskSizeGB" name="diskSizeGB">
+                    <option value="16">16</option>
+                    <option value="32">32</option>
+                    <option value="64">64</option>
+                    <option value="128">128</option>
+                    <option value="256">256</option>
+                    <option value="512">512</option>
+                </select>
+
+                <label for="storageType">Storage Type:</label>
+                <select id="storageType" name="storageType">
+                    <option value="Standard_LRS">Standard_LRS</option>
+                    <option value="Premium_LRS">Premium_LRS</option>
+                </select>
+
+                <label for="mountPoint">Mount Point:</label>
+                <input type="text" id="mountPoint" name="mountPoint" value="NA" maxlength="50">
+            `;
+
+            diskGroupContainer.appendChild(newDiskGroup);
+        }
+
         function generatePayload() {
             const form = document.getElementById('templateForm');
             const formData = new FormData(form);
@@ -171,11 +214,3 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-    </script>
-</body>
-</html>
